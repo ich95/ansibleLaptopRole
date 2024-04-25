@@ -1,0 +1,9 @@
+---
+# tasks file for LaptopSetup
+- name: include tasks
+  include_tasks:
+    file: "{{ item }}" 
+  loop:
+    - apt.yml
+    - vim.yml
+    - logid.yml

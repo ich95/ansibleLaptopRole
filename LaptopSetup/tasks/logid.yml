@@ -1,0 +1,43 @@
+---
+- name: install dependencies
+  package:
+    name:
+      - build-essential 
+      - cmake 
+      - pkg-config 
+      - libevdev-dev 
+      - libudev-dev
+      - libconfig++-dev
+      - libglib2.0-dev
+
+- name: download stuff
+  git:
+    repo: https://github.com/PixlOne/logiops.git
+    dest: /tmp/logiops/
+    clone: yes
+    update: yes
+
+- name: create build dir
+  file:
+    dest: /tmp/logiops/build
+    state: directory
+    mode: '0755'
+
+- name: make logid
+  shell: |
+      cd /tmp/logiops/build
+      cmake -DCMAKE_BUILD_TYPE=Release ..
+      make
+
+- name: write logid config
+  copy:
+    src: logid.cfg
+    dest: "{{HOME_PATH}}/.config/logid.cfg"
+
+- name: enable service
+  systemd_service:
+    enabled: true
+    name: logid
+
+- name: start service
+  shell: "/usr/local/bin/logid -c {{HOME_PATH}}/.config/logid.cfg"

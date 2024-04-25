@@ -1,0 +1,5 @@
+---
+- name: write vimrc
+  copy:
+    src: vimrc
+    dest: "{{HOME_PATH}}/.vimrc"

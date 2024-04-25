@@ -1,0 +1,15 @@
+---
+- name: update apt n stuff
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+- name: install packets
+  apt:
+    pkg:
+      - vim
+      - git
+      - less
+      - wget
+      - curl
+      - iputils-ping
+      - sudo
+
