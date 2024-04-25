@@ -7,3 +7,5 @@
     - apt.yml
     - vim.yml
     - logid.yml
+    - vscodium.yml
+    - zsh.yml
