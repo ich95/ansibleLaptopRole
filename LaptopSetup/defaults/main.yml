@@ -1,3 +1,6 @@
 ---
 # defaults file for LaptopSetup
-HOME_PATH: "/home/joerg"
+HOME_USER: joerg
+HOME_PATH: "/home/{{HOME_USER}}"
+
+LOCKONREMOVE: true

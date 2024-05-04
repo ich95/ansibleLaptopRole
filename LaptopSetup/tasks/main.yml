@@ -4,8 +4,9 @@
   include_tasks:
     file: "{{ item }}" 
   loop:
-    - apt.yml
-    - vim.yml
-    - logid.yml
-    - vscodium.yml
-    - zsh.yml
+    # - apt.yml
+    # - vim.yml
+    # - logid.yml
+    # - vscodium.yml
+    # - zsh.yml
+    - yubi.yml

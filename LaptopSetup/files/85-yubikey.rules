@@ -1,0 +1,2 @@
+# Yubikey Udev Rule: running a bash script in case your Yubikey is inserted, removed or triggered by challenge-response
+ACTION=="remove" ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="/usr/bin/loginctl lock-sessions"

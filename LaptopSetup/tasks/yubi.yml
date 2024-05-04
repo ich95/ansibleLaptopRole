@@ -1,0 +1,39 @@
+---
+
+- name: install needed packages
+  package:
+    name: libpam-u2f
+
+- name: create needed Dirs
+  file:
+    dest: "{{HOME_PATH}}/.config/Yubico"
+    state: directory
+    owner: "{{HOME_USER}}"
+    mode: 0755
+
+- name: copy keys
+  copy:
+    src: u2f_keys
+    dest: "{{HOME_PATH}}/.config/Yubico/u2f_keys"
+
+# enable optional login tap
+- name: yubikey optional sudo
+  lineinfile:
+    path: "/etc/pam.d/{{item}}"
+    insertafter: "@include common-auth"
+    line: "auth       optional   pam_u2f.so"
+    state: present
+  with_items:
+    - "gdm-password"
+    - "sudo"
+    - "sudo-i"
+
+# in defaults -> LockOnRemove
+# if true -> Bildschirmsperre bei abziehen
+- name: set udev rule
+  copy:
+    src: 85-yubikey.rules
+    dest: /etc/udev/rules.d/85-yubikey.rules
+  when: "{{LOCKONREMOVE}}"
+
+
