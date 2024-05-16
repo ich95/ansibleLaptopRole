@@ -12,4 +12,5 @@
       - curl
       - iputils-ping
       - sudo
+      - htop
 

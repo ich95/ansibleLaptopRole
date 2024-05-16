@@ -1,17 +1,17 @@
 ---
 
-- name: install needed packages
+- name: yubi install needed packages
   package:
     name: libpam-u2f
 
-- name: create needed Dirs
+- name: yubi create needed Dirs
   file:
     dest: "{{HOME_PATH}}/.config/Yubico"
     state: directory
     owner: "{{HOME_USER}}"
     mode: 0755
 
-- name: copy keys
+- name: yubi copy keys
   copy:
     src: u2f_keys
     dest: "{{HOME_PATH}}/.config/Yubico/u2f_keys"
@@ -30,7 +30,7 @@
 
 # in defaults -> LockOnRemove
 # if true -> Bildschirmsperre bei abziehen
-- name: set udev rule
+- name: yubi set udev rule
   copy:
     src: 85-yubikey.rules
     dest: /etc/udev/rules.d/85-yubikey.rules

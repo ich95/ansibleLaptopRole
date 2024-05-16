@@ -13,7 +13,7 @@
 - name: install ohmyzsh
   shell: sh /tmp/install_ohmyzsh.sh --unattended
 
-- name: set config
+- name: zsh set config
   copy: 
     src: zshrc
     dest: "{{HOME_PATH}}/.zshrc"
